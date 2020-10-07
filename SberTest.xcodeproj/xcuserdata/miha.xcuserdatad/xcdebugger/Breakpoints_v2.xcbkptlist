@@ -36,7 +36,7 @@
             landmarkType = "0">
             <Locations>
                <Location
-                  uuid = "515E7B83-3BED-4938-BF9C-4FF071EB61C2 - f9212f3b52b4b20b"
+                  uuid = "515E7B83-3BED-4938-BF9C-4FF071EB61C2 - d78efde5f97e4046"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -51,7 +51,7 @@
                   offsetFromSymbolStart = "14">
                </Location>
                <Location
-                  uuid = "515E7B83-3BED-4938-BF9C-4FF071EB61C2 - a68a7794d5dd897a"
+                  uuid = "515E7B83-3BED-4938-BF9C-4FF071EB61C2 - 8825a54a7e177b75"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -72,7 +72,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "11CA07AA-4F34-4474-A1D4-60E85C33B259"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SberTest/NewsList.swift"
@@ -84,34 +84,34 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "11CA07AA-4F34-4474-A1D4-60E85C33B259 - 6bd5dd3aa674dffe"
+                  uuid = "11CA07AA-4F34-4474-A1D4-60E85C33B259 - 7a9bb39738924a53"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;SberTest.News&gt;, Swift.Int, SberTest.NewsRow&gt; in closure #1 () -&gt; SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;SberTest.News&gt;, Swift.Int, SberTest.NewsRow&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in SberTest.NewsList.body.getter : some"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;SberTest.News&gt;, Swift.String, SwiftUI.NavigationLink&lt;SberTest.NewsRow, SberTest.NewsDetail&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in SberTest.NewsList.body.getter : some"
                   moduleName = "SberTest"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsList.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
                   offsetFromSymbolStart = "29">
                </Location>
                <Location
-                  uuid = "11CA07AA-4F34-4474-A1D4-60E85C33B259 - b28fe845c017b4cd"
+                  uuid = "11CA07AA-4F34-4474-A1D4-60E85C33B259 - a465bb320672b647"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SberTest.News) -&gt; SberTest.NewsRow in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;SberTest.News&gt;, Swift.Int, SberTest.NewsRow&gt; in closure #1 () -&gt; SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;Swift.Array&lt;SberTest.News&gt;, Swift.Int, SberTest.NewsRow&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in SberTest.NewsList.body.getter : some"
+                  symbolName = "closure #1 (SberTest.News) -&gt; SwiftUI.NavigationLink&lt;SberTest.NewsRow, SberTest.NewsDetail&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;SberTest.News&gt;, Swift.String, SwiftUI.NavigationLink&lt;SberTest.NewsRow, SberTest.NewsDetail&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in SberTest.NewsList.body.getter : some"
                   moduleName = "SberTest"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsList.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "235">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -120,7 +120,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E7D8C142-B263-4107-8798-4DAD71ADD01D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SberTest/NewsList.swift"
@@ -158,10 +158,8 @@
             filePath = "SberTest/NewsParser.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "205"
+            endingLineNumber = "205">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,10 +172,8 @@
             filePath = "SberTest/NewsParser.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "203"
+            endingLineNumber = "203">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
