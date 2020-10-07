@@ -29,11 +29,35 @@ struct News: Hashable, Codable, Identifiable {
 		set {
 			_isRead = newValue
 		}
-	}}
-
-extension News {
-	
+	}
 }
+
+class FeedDataObject: Identifiable, ObservableObject {
+	var id = UUID().uuidString
+	var title: String
+	var pubDate: String
+	var description: String
+	var num: Int?
+	private var _isRead: Bool?
+	var isRead: Bool {
+		get {
+			_isRead ?? false
+		}
+		set {
+			_isRead = newValue
+		}
+	}
+	
+	init(title: String, pubDate: String, description: String) {
+		self.title = title
+		self.pubDate = pubDate
+		self.description = description
+	}
+}
+struct BZGeneralFeed: Identifiable {
+	let id = UUID().uuidString
+}
+
 //	let sourceName: SourceName
 //	let sourceURL, link: String
 //	let category: Category

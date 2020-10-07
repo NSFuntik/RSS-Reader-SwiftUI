@@ -9,10 +9,9 @@
 import SwiftUI
 import Combine
 
-final class UserData: ObservableObject {
-	@Published var landmarks = landmarkData
-	
-}
+//final class UserData: ObservableObject {
+//	@Published var landmarks = [FeedData]()
+//}
 
 //let newsData
 //class loadNews {

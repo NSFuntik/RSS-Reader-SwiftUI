@@ -13,22 +13,26 @@ import SwiftUI
 
 
 struct NewsList: View {
-	@EnvironmentObject var userData: UserData
+	var postData: [FeedDataObject] = []
+	@ObservedObject var userData: FeedData
 
 	var body: some View {
 		NavigationView {
 				List {
-					ForEach(userData.landmarks) { item in //<-
-						NavigationLink(destination: NewsDetail(landmark: item)) {
-							NewsRow(landmark: item)
-							
+					ForEach(userData.RssPosts) { item in //<-
+						NavigationLink(destination: NewsDetail(userData: FeedData.shared, landmark: item)) {
+							NewsRow(userData: userData, landmark: item)
 						}
 					}
-					//.padding()
-				}
-					.navigationBarTitle((Text("News")), displayMode: .large)
+				} .navigationBarTitle((Text("News")), displayMode: .large)
 		}
 
+	}
+	init(rssPostData: FeedData) {
+		postData = []
+		self.userData = FeedData()
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithTransparentBackground()
 	}
 }
 
@@ -47,7 +51,7 @@ struct NewsList: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
 	static var previews: some View {
-		NewsList()
-		.environmentObject(UserData())
+		NewsList(rssPostData: FeedData())
+		//.environmentObject(FeedData())
 	}
 }

@@ -9,14 +9,13 @@
 import SwiftUI
 
 struct NewsRow: View {
-	@EnvironmentObject var userData: UserData
-	var landmark: News
+	@ObservedObject var userData: FeedData
+	var landmark: FeedDataObject
 	var landmarkIndex: Int {
-		userData.landmarks.firstIndex(where: { $0.id == landmark.id })!
+		userData.RssPosts.firstIndex(where: { $0.id == landmark.id })!
 	}
 	
 	var body: some View {
-		VStack(alignment: .leading) {
 			HStack {
 				if landmark.isRead {
 					Image(systemName: "\(landmarkIndex).circle")
@@ -27,26 +26,32 @@ struct NewsRow: View {
 						.imageScale(.large)
 						.foregroundColor(.blue)
 				}
-				Spacer()
-				Text(landmark.pubDate)
-				.font(.footnote)
-				.multilineTextAlignment(.trailing)
+				VStack() {
+					Text(landmark.title)
+						.fontWeight(.bold)
+						.lineLimit(4)
+						.font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+						.padding(.horizontal, 3.0)
+					HStack {
+						//Spacer()
+						Text(landmark.pubDate)
+							.font(.caption)
+							.fontWeight(.light)
+							.multilineTextAlignment(.trailing)
+							.padding(.leading, 10.0)
+					}
+				}
+				
 				//.padding(.trailing, 2.0)
 		}
-			Text(landmark.title)
-				.fontWeight(.semibold)
-				.lineLimit(4)
-				.font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-				.padding(.leading, 3.0)
+
 		}
-		.padding(.all, 5.0)
-		
-	}
+		//.padding(.all, 5.0)
 }
 
 
 struct NewsRow_Previews: PreviewProvider {
 	static var previews: some View {
-			NewsRow(landmark: landmarkData[1])
+		NewsRow(userData: FeedData.shared, landmark: FeedData.shared.RssPosts[0])
 	}
 }

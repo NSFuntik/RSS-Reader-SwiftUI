@@ -9,12 +9,11 @@
 import SwiftUI
 
 struct NewsDetail: View {
-	@EnvironmentObject var userData: UserData
-	var landmark: News
+	@ObservedObject var userData: FeedData
+	var landmark: FeedDataObject
 	var landmarkIndex: Int {
-		userData.landmarks.firstIndex(where: { $0.id == landmark.id })!
+		userData.RssPosts.firstIndex(where: { $0.id == landmark.id }) ?? 0
 	}
-
 	
 	var body: some View {
 		VStack(alignment: .center) {
@@ -23,17 +22,18 @@ struct NewsDetail: View {
 				.fontWeight(.light)
 				.foregroundColor(Color.yellow)
 				.multilineTextAlignment(.center)
-				.lineLimit(4)
+				.lineLimit(5)
 				.padding(.horizontal, 3.0)
-			HStack {
-				
+				.offset(y: -50)
+			HStack(alignment: .top, spacing: 2.0) {
 				Button(action: {
-					self.userData.landmarks[self.landmarkIndex].isRead.toggle()
+					self.userData.RssPosts[self.landmarkIndex].isRead.toggle()
 				}) {
-					if self.userData.landmarks[self.landmarkIndex].isRead {
+					if self.userData.RssPosts[self.landmarkIndex].isRead {
 						Image(systemName: "circle")
 							.imageScale(.large)
 							.foregroundColor(Color.gray)
+							.scaleEffect()
 					} else {
 						Image(systemName: "circle.fill")
 							.imageScale(.large)
@@ -50,7 +50,7 @@ struct NewsDetail: View {
 					.padding(.all, 4.0)
 			}
 			.padding(.horizontal)
-
+			.offset(y: -30)
 
 			ScrollView {
 				Text(landmark.description)
@@ -60,7 +60,7 @@ struct NewsDetail: View {
 					.padding(.horizontal)
 			}.frame(maxWidth: .infinity)
 		}
-		.navigationBarTitle(Text(String(landmarkIndex)).italic(), displayMode: .inline)
+		//.navigationBarTitle(Text(String(landmarkIndex)))
 		
 	}
 }
@@ -68,7 +68,7 @@ struct NewsDetail: View {
 
 struct NewsDetail_Previews: PreviewProvider {
 	static var previews: some View {
-		NewsDetail(landmark: landmarkData[3])
-			.environmentObject(UserData())
+		NewsDetail( userData: FeedData.shared, landmark: FeedData.shared.RssPosts[1])
+			.environmentObject(FeedData())
 	}
 }
