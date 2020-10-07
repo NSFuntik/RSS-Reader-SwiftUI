@@ -15,22 +15,22 @@ import CoreLocation
 
 
 // MARK: - Item
-struct News: Hashable, Codable, Identifiable {
-	var id: String
-	let num: Int?
-	let title: String
-	let description: String
-	let pubDate: String
-	private var _isRead: Bool?
-	var isRead: Bool {
-		get {
-			_isRead ?? false
-		}
-		set {
-			_isRead = newValue
-		}
-	}
-}
+//struct News: Hashable, Codable, Identifiable {
+//	var id: String
+//	let num: Int?
+//	let title: String
+//	let description: String
+//	let pubDate: String
+//	private var _isRead: Bool?
+//	var isRead: Bool {
+//		get {
+//			_isRead ?? false
+//		}
+//		set {
+//			_isRead = newValue
+//		}
+//	}
+//}
 
 class FeedDataObject: Identifiable, ObservableObject {
 	var id = UUID().uuidString
@@ -38,8 +38,8 @@ class FeedDataObject: Identifiable, ObservableObject {
 	var pubDate: String
 	var description: String
 	var num: Int?
-	private var _isRead: Bool?
-	var isRead: Bool {
+	@State var _isRead: Bool?
+	 var isRead: Bool {
 		get {
 			_isRead ?? false
 		}
@@ -52,6 +52,10 @@ class FeedDataObject: Identifiable, ObservableObject {
 		self.title = title
 		self.pubDate = pubDate
 		self.description = description
+		if self._isRead == nil {
+			self.isRead = false
+			self._isRead = false
+		}
 	}
 }
 struct BZGeneralFeed: Identifiable {
@@ -111,4 +115,3 @@ struct BZGeneralFeed: Identifiable {
 //struct Synopsis {
 //	let cdata: String
 //}
-

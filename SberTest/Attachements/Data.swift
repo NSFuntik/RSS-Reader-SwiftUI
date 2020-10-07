@@ -9,8 +9,6 @@
 import UIKit
 import SwiftUI
 import CoreLocation
-import Alamofire
-import SwiftyXMLParser
 
 //let landmarkData: [FeedDataObject] = load("news.json")
 //func load<T: Decodable>(_ filename: String) -> T {

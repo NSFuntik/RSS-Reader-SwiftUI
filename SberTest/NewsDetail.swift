@@ -14,8 +14,10 @@ struct NewsDetail: View {
 	var landmarkIndex: Int {
 		userData.RssPosts.firstIndex(where: { $0.id == landmark.id }) ?? 0
 	}
-	
+	@State var isRead = FeedData.shared.isRead
+
 	var body: some View {
+
 		VStack(alignment: .center) {
 			Text(landmark.title)
 				.font(.title)
@@ -26,21 +28,20 @@ struct NewsDetail: View {
 				.padding(.horizontal, 3.0)
 				.offset(y: -50)
 			HStack(alignment: .top, spacing: 2.0) {
+				
 				Button(action: {
-					self.userData.RssPosts[self.landmarkIndex].isRead.toggle()
-				}) {
-					if self.userData.RssPosts[self.landmarkIndex].isRead {
-						Image(systemName: "circle")
-							.imageScale(.large)
-							.foregroundColor(Color.gray)
-							.scaleEffect()
-					} else {
-						Image(systemName: "circle.fill")
-							.imageScale(.large)
-							.foregroundColor(Color.blue)
+					if landmark.isRead == true {
+						landmark.isRead = false }
+					else if landmark.isRead == false
+					{ landmark.isRead = true }
+					//userData._isRead.toggle()
+				}, label: {
+					if landmark.isRead == true {
+						Image(systemName: "circle.fill").foregroundColor(.blue)}
+					else if landmark.isRead == false{
+						Image(systemName: "circle").foregroundColor(.gray)
 					}
-				}
-				Spacer()
+				})
 				Text(landmark.pubDate)
 					.font(.caption)
 					.fontWeight(.light)
@@ -49,26 +50,30 @@ struct NewsDetail: View {
 					.lineLimit(0)
 					.padding(.all, 4.0)
 			}
-			.padding(.horizontal)
-			.offset(y: -30)
-
-			ScrollView {
-				Text(landmark.description)
-					.fontWeight(.thin)
-					.multilineTextAlignment(.leading)
-					.lineLimit(nil)
-					.padding(.horizontal)
-			}.frame(maxWidth: .infinity)
+			
 		}
-		//.navigationBarTitle(Text(String(landmarkIndex)))
+		.padding(.horizontal)
+		.offset(y: -30)
 		
+		ScrollView {
+			Text(landmark.description)
+				.fontWeight(.thin)
+				.multilineTextAlignment(.leading)
+				.lineLimit(nil)
+				.padding(.horizontal)
+		}.frame(maxWidth: .infinity)
 	}
+	
+	//.navigationBarTitle(Text(String(landmarkIndex)))
+	
 }
 
 
-struct NewsDetail_Previews: PreviewProvider {
-	static var previews: some View {
-		NewsDetail( userData: FeedData.shared, landmark: FeedData.shared.RssPosts[1])
-			.environmentObject(FeedData())
-	}
-}
+
+
+//struct NewsDetail_Previews: PreviewProvider {
+//	static var previews: some View {
+//		NewsDetail( userData: userData, landmark: userData.RssPosts[1])
+//			.environmentObject(FeedData())
+//	}
+//}

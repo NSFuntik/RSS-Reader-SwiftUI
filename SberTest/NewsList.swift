@@ -15,7 +15,6 @@ import SwiftUI
 struct NewsList: View {
 	var postData: [FeedDataObject] = []
 	@ObservedObject var userData: FeedData
-
 	var body: some View {
 		NavigationView {
 				List {
@@ -26,7 +25,9 @@ struct NewsList: View {
 					}
 				} .navigationBarTitle((Text("News")), displayMode: .large)
 		}
-
+		.onAppear(){
+			userData.getData()
+		}
 	}
 	init(rssPostData: FeedData) {
 		postData = []

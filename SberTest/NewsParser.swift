@@ -15,7 +15,8 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 	var itemDescription: String = String()
 	
 	var elementName: String = String()
-	
+
+	var isRead: Bool = Bool()
 	
 	func getData(){
 		print("lol did this work???")
@@ -30,6 +31,8 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 				if let parser = XMLParser(contentsOf: self.generalURL ){
 					parser.delegate = self
 					if parser.parse(){
+//						self._isRead = isRead
+//						_isRead = false
 						print()
 					}
 					print("oh hello!")
@@ -54,8 +57,9 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 			title = String()
 			pudDate = String()
 			itemDescription = String()
-			
+			isRead = Bool()
 		}
+		
 		self.elementName = elementName
 	}
 	
