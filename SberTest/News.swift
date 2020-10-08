@@ -8,37 +8,21 @@
 
 import SwiftUI
 import CoreLocation
-// This file was generated from JSON Schema using codebeautify, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome5 = try Welcome5(json)
-
 
 // MARK: - Item
-//struct News: Hashable, Codable, Identifiable {
-//	var id: String
-//	let num: Int?
-//	let title: String
-//	let description: String
-//	let pubDate: String
-//	private var _isRead: Bool?
-//	var isRead: Bool {
-//		get {
-//			_isRead ?? false
-//		}
-//		set {
-//			_isRead = newValue
-//		}
-//	}
-//}
+final class UserData: ObservableObject {
+	@Published var isRead = false
+	@Published var feeds = FeedData.shared
+}
+
 
 class FeedDataObject: Identifiable, ObservableObject {
-	var id = UUID().uuidString
+	@Published var id = UUID().uuidString
 	var title: String
 	var pubDate: String
 	var description: String
-	var num: Int?
-	@State var _isRead: Bool?
+	//var num: Int?
+	private var _isRead: Bool?
 	 var isRead: Bool {
 		get {
 			_isRead ?? false
@@ -52,15 +36,13 @@ class FeedDataObject: Identifiable, ObservableObject {
 		self.title = title
 		self.pubDate = pubDate
 		self.description = description
-		if self._isRead == nil {
-			self.isRead = false
-			self._isRead = false
-		}
+		self._isRead = isRead
 	}
 }
-struct BZGeneralFeed: Identifiable {
-	let id = UUID().uuidString
-}
+
+//extension FeedDataObject: Hashable, Identifiable, ObservableObject {
+//	@Published var id = UUID().uuidString
+//}
 
 //	let sourceName: SourceName
 //	let sourceURL, link: String

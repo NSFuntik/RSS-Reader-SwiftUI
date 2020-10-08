@@ -1,23 +1,25 @@
 import UIKit
 import SwiftUI
 import CoreLocation
+import Combine
 
 class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 	var generalURL = URL(string: "https://www.banki.ru/xml/news.rss")!
 	static let shared = FeedData()
 	
-	@Published var RssPosts = [FeedDataObject]()
-	
+	@Published var rssPosts = [FeedDataObject]()
 	var title: String = String()
 	
-	var pudDate : String = String()
+	var pubDate : String = String()
 	
 	var itemDescription: String = String()
 	
 	var elementName: String = String()
-
-	var isRead: Bool = Bool()
 	
+	 @Published var isRead: Bool = Bool()
+	
+	//private var RssPost = FeedDataObject(title: shared.title , pubDate: shared.itemDescription, description: shared.pubDate)
+
 	func getData(){
 		print("lol did this work???")
 		
@@ -33,6 +35,7 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 					if parser.parse(){
 //						self._isRead = isRead
 //						_isRead = false
+						
 						print()
 					}
 					print("oh hello!")
@@ -55,9 +58,9 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 		if elementName == "item" {
 			title = String()
-			pudDate = String()
+			pubDate = String()
 			itemDescription = String()
-			isRead = Bool()
+			self.isRead = false
 		}
 		
 		self.elementName = elementName
@@ -65,8 +68,8 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 	
 	func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
 		if elementName == "item"{
-			let dataObj = FeedDataObject(title: title, pubDate: pudDate, description: itemDescription)
-			RssPosts.append(dataObj)
+			let dataObj = FeedDataObject(title: title, pubDate: pubDate, description: itemDescription)
+			rssPosts.append(dataObj)
 			dump(dataObj)
 		}
 	}
@@ -81,7 +84,7 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 				case "description":
 					itemDescription += data
 				case "pubDate":
-					pudDate += data
+					pubDate += data
 				default: break
 			}
 		}

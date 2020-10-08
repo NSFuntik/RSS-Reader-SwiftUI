@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "WnoeC06LBpY.jpg",
+      "filename" : "SberIconBlack.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "SberIconBlack-1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "SberIconBlack-2.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

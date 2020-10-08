@@ -14,24 +14,64 @@ import SwiftUI
 
 struct NewsList: View {
 	var postData: [FeedDataObject] = []
-	@ObservedObject var userData: FeedData
+	@ObservedObject var feedData: FeedData
+
+	//@ObservedObject var userData: UserData
+	@State private var presentMe = false
+	var landmark = FeedDataObject(title: FeedData.shared.title, pubDate: FeedData.shared.pubDate, description: FeedData.shared.itemDescription)
+	//@State var isOpen: Bool = FeedData.shared.isRead
+	var landmarkIndex: Int {
+		feedData.rssPosts.firstIndex(where: { $0.id == landmark.id })!
+	}
+	
 	var body: some View {
 		NavigationView {
-				List {
-					ForEach(userData.RssPosts) { item in //<-
-						NavigationLink(destination: NewsDetail(userData: FeedData.shared, landmark: item)) {
-							NewsRow(userData: userData, landmark: item)
+			List {
+				ForEach(feedData.rssPosts) { landmark in //<-
+					NavigationLink(destination: NewsDetail(userData: feedData, landmark: landmark)) {
+						HStack{
+							Button(action: {							
+								landmark.isRead = true //$isRead = true
+							}) {
+								HStack {
+									VStack(alignment: .leading, spacing: 5) {
+										Text(landmark.title)
+											.fontWeight(.bold)
+											.lineLimit(4)
+											.font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+											.padding(.horizontal, 3.0)
+										Text(landmark.pubDate)
+											.font(.caption)
+											.fontWeight(.light)
+											.multilineTextAlignment(.trailing)
+											.padding(.leading, 130.0)
+									}
+									
+								}
+								
+							}
+							Spacer()
+							if landmark.isRead == false {
+								Image(systemName: "circle.fill")
+									.imageScale(.small)
+									.foregroundColor(.blue)
+							}
 						}
+						
 					}
-				} .navigationBarTitle((Text("News")), displayMode: .large)
+				}
+			} .navigationBarTitle((Text("News")), displayMode: .large)
+			.preferredColorScheme(.dark)
+			.foregroundColor(.gray)
 		}
 		.onAppear(){
-			userData.getData()
+			feedData.getData()
 		}
 	}
+	
 	init(rssPostData: FeedData) {
 		postData = []
-		self.userData = FeedData()
+		self.feedData = FeedData()
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithTransparentBackground()
 	}
@@ -39,20 +79,20 @@ struct NewsList: View {
 
 //func loadData() {
 //	XMLParserService.shared.parseData { (news) in
-		
+
 //		newsData = (news)
-		//newsData.append(contentsOf: news)
-		//self.cellStates = Array(repeating: .collapsed, count: news.count)
-		//		OperationQueue.main.addOperation {
-		//			self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
-		//		}
-		//		dump(newsData.description)
+//newsData.append(contentsOf: news)
+//self.cellStates = Array(repeating: .collapsed, count: news.count)
+//		OperationQueue.main.addOperation {
+//			self.tableView.reloadSections(IndexSet(integer: 0), with: .left)
+//		}
+//		dump(newsData.description)
 //	}
 //}
 
 struct SwiftUIView_Previews: PreviewProvider {
 	static var previews: some View {
 		NewsList(rssPostData: FeedData())
-		//.environmentObject(FeedData())
+		.environmentObject(FeedData())
 	}
 }

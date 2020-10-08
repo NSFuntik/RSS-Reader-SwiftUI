@@ -10,35 +10,24 @@ import SwiftUI
 
 struct NewsRow: View {
 	@ObservedObject var userData: FeedData
-	@ObservedObject var landmark: FeedDataObject
-	//@State var _isRead: Bool = FeedData().$RssPost
+	var landmark: FeedDataObject
+	//@State var isOpen: Bool = FeedData.shared.isRead
 	var landmarkIndex: Int {
-		userData.RssPosts.firstIndex(where: { $0.id == landmark.id })!
+		userData.rssPosts.firstIndex(where: { $0.id == landmark.id })!
 	}
 	
 	var body: some View {
 		VStack(alignment: .leading, spacing: 5) {
-			HStack {
-				if landmark._isRead ?? landmark.isRead {
-					Image(systemName: "\(landmarkIndex).circle")
-						.imageScale(.small)
-						.foregroundColor(.gray)
-				} else {
-					Image(systemName: "\(landmarkIndex).circle.fill")
-						.imageScale(.large)
-						.foregroundColor(.blue)
-				}
-				Text(landmark.title)
-					.fontWeight(.bold)
-					.lineLimit(4)
-					.font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
-					.padding(.horizontal, 3.0)
-			}
+			Text(landmark.title)
+				.fontWeight(.bold)
+				.lineLimit(4)
+				.font(/*@START_MENU_TOKEN@*/.headline/*@END_MENU_TOKEN@*/)
+				.padding(.horizontal, 3.0)
 			Text(landmark.pubDate)
 				.font(.caption)
 				.fontWeight(.light)
 				.multilineTextAlignment(.trailing)
-				.padding(.leading, 150.0)
+				.padding(.leading, 130.0)
 		}
 	}
 	

@@ -12,9 +12,9 @@ struct NewsDetail: View {
 	@ObservedObject var userData: FeedData
 	var landmark: FeedDataObject
 	var landmarkIndex: Int {
-		userData.RssPosts.firstIndex(where: { $0.id == landmark.id }) ?? 0
+		userData.rssPosts.firstIndex(where: { $0.id == landmark.id }) ?? 0
 	}
-	@State var isRead = FeedData.shared.isRead
+	//@State var isRead = FeedData.shared.isRead
 
 	var body: some View {
 
@@ -24,36 +24,35 @@ struct NewsDetail: View {
 				.fontWeight(.light)
 				.foregroundColor(Color.yellow)
 				.multilineTextAlignment(.center)
-				.lineLimit(5)
+				//.lineLimit(5)
 				.padding(.horizontal, 3.0)
-				.offset(y: -50)
+				.offset(y: -30)
 			HStack(alignment: .top, spacing: 2.0) {
-				
-				Button(action: {
-					if landmark.isRead == true {
-						landmark.isRead = false }
-					else if landmark.isRead == false
-					{ landmark.isRead = true }
-					//userData._isRead.toggle()
-				}, label: {
-					if landmark.isRead == true {
-						Image(systemName: "circle.fill").foregroundColor(.blue)}
-					else if landmark.isRead == false{
-						Image(systemName: "circle").foregroundColor(.gray)
-					}
-				})
+//				Button(action: {
+//					if landmark.isRead == true {
+//						landmark.isRead = false }
+//					else if landmark.isRead == false
+//					{ landmark.isRead = true }
+//					//userData._isRead.toggle()
+//				}, label: {
+//					if landmark.isRead == true {
+//						Image(systemName: "circle.fill").foregroundColor(.blue)}
+//					else if landmark.isRead == false{
+//						Image(systemName: "circle").foregroundColor(.gray)
+//					}
+//				})
 				Text(landmark.pubDate)
 					.font(.caption)
 					.fontWeight(.light)
-					.foregroundColor(Color.black)
+					.foregroundColor(Color.gray)
 					.multilineTextAlignment(.center)
 					.lineLimit(0)
-					.padding(.all, 4.0)
+					//.padding(.all, 1.0)
 			}
 			
 		}
 		.padding(.horizontal)
-		.offset(y: -30)
+		//.offset(y: -30)
 		
 		ScrollView {
 			Text(landmark.description)
@@ -63,7 +62,7 @@ struct NewsDetail: View {
 				.padding(.horizontal)
 		}.frame(maxWidth: .infinity)
 	}
-	
+
 	//.navigationBarTitle(Text(String(landmarkIndex)))
 	
 }
