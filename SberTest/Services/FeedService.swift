@@ -3,21 +3,18 @@ import SwiftUI
 import CoreLocation
 import Combine
 
-final class UserData: ObservableObject {
-	@Published var feedURL: String = "https://www.banki.ru/xml/news.rss"
-	@Published var feeds = FeedData.shared
-}
 
-class FeedData: NSObject, XMLParserDelegate, ObservableObject {
+
+class FeedData: NSObject, ObservableObject {
 	@Published var generalURL: URL!
 	@Published var rssPosts = [FeedDataObject]()
-	//var feedURL: URL = URL(string: UserData)
 	@Published var isRead: Bool = Bool()
+	
+	var rssPost: Feed = Feed()
 	var title: String = String()
 	var pubDate : String = String()
 	var itemDescription: String = String()
 	var elementName: String = String()
-
 	static let shared = FeedData()
 	override init() {	}
 
@@ -26,41 +23,55 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 		self.generalURL = generalURL
 		getData(generalURL: generalURL)
 	}
-	//private var RssPost = FeedDataObject(title: shared.title , pubDate: shared.itemDescription, description: shared.pubDate)
-	
+}
+
+extension FeedData {
+	// MARK:- Fetching XML Data from URL method
 	
 	func getData(generalURL: URL){
-		print("lol did this work???")
-		
 		let task = URLSession.shared.dataTask(with: generalURL) { [self] data, response, error in
 			guard let _ = data, error == nil else {
 				print(error ?? "Unknown error")
 				return
 			}
-			
 			DispatchQueue.main.async {
 				if let parser = XMLParser(contentsOf: self.generalURL){
 					parser.delegate = self
 					if parser.parse() {
 						print()
 					}
-					print("oh hello!")
 				}
 			}
 		}
 		task.resume()
-		
 	}
 	
-
-//	override init() {
-//		super.init()
-//		getData(generalURL: generalURL)
-//	}
-
-
+	// MARK:- Refreshing Feeds Data method
 	
-	//parser delegate methods
+	func refreshData(feed: FeedData) {
+		let newFeed = FeedData(generalURL: URL(string: UserData.shared.feedURL)!)
+		let recentFeedPosts = newFeed.rssPosts.filter { newPost in
+			return !feed.rssPosts.contains { (post) -> Bool in
+				return post.title == newPost.title
+			}
+		}
+		guard !recentFeedPosts.isEmpty else {
+			print("No avaible resent posts.")
+			return }
+		
+		feed.rssPosts.insert(contentsOf: recentFeedPosts, at: 0)
+	
+		if let index = self.rssPosts.firstIndex(
+			where: { $0.url?.absoluteString == feed.generalURL.absoluteString}) {
+			self.rssPosts.remove(at: index)
+			self.rssPosts.insert(contentsOf: newFeed.rssPosts, at: 0)
+		}
+	}
+}
+
+// MARK:- Parser delegate methods
+
+extension FeedData: XMLParserDelegate {
 	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 		if elementName == "item" {
 			title = String()
@@ -68,7 +79,6 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 			itemDescription = String()
 			self.isRead = false
 		}
-		
 		self.elementName = elementName
 	}
 	
@@ -98,29 +108,7 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 	
 	func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
 		print(parseError)
-		
 	}
-	
-	
 }
-extension FeedData {
-	func refreshData(feed: FeedData) {
-		let newFeed = FeedData.shared
-		let recentFeedPosts = newFeed.rssPosts.filter { newPost in
-			return !feed.rssPosts.contains { (post) -> Bool in
-				return post.title == newPost.title
-			}
-		}
-		guard !recentFeedPosts.isEmpty else { return }
-		
-		feed.rssPosts.insert(contentsOf: recentFeedPosts, at: 0)
-		
-		if let index = self.rssPosts.firstIndex(where: {$0.url?.absoluteString == feed.generalURL.absoluteString}) {
-			self.rssPosts.remove(at: index)
-			self.rssPosts.insert(contentsOf: newFeed.rssPosts, at: 0)
-			
-		}
-		//self.updateFeeds()
-	}
 
-}
+

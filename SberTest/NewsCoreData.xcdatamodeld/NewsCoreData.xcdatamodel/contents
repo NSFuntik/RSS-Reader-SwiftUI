@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5384c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="Feed" representedClassName="Feed" syncable="YES" codeGenerationType="class"/>
+    <elements>
+        <element name="Feed" positionX="-36" positionY="9" width="128" height="29"/>
+    </elements>
 </model>

@@ -42,73 +42,9 @@
             filePath = "SberTest/SceneDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "scene(_:willConnectTo:options:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99D8D2C4-133F-4314-823B-5AD34CAF4865"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SberTest/NewsParser.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "getData(generalURL:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "99D8D2C4-133F-4314-823B-5AD34CAF4865 - 86be994dc67887f3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SberTest.FeedData.getData() -&gt; ()"
-                  moduleName = "SberTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsParser.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "469">
-               </Location>
-               <Location
-                  uuid = "99D8D2C4-133F-4314-823B-5AD34CAF4865 - def5edb378b559b0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SberTest.FeedData.getData() -&gt; ()"
-                  moduleName = "SberTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsParser.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "98">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1002AA2F-32B6-450F-BD8B-703EBEAB0C0F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SberTest/News.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "init(title:pubDate:description:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -124,87 +60,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
             endingLineNumber = "79"
-            landmarkName = "parser(_:didEndElement:namespaceURI:qualifiedName:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "33691EBF-A5F0-4741-AA9A-3A443EF0A8DE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SberTest/NewsParser.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "refreshData(feed:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "33691EBF-A5F0-4741-AA9A-3A443EF0A8DE - cd09bc3b2ed0ab6f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SberTest.FeedData.refreshData(feed: SberTest.FeedData) -&gt; ()"
-                  moduleName = "SberTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsParser.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "165">
-               </Location>
-               <Location
-                  uuid = "33691EBF-A5F0-4741-AA9A-3A443EF0A8DE - abaa273a4d2e0737"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SberTest.FeedDataObject) -&gt; Swift.Bool in SberTest.FeedData.refreshData(feed: SberTest.FeedData) -&gt; ()"
-                  moduleName = "SberTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsParser.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "44">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D44FA5AE-ED58-4870-A4E3-36BEA65F9B5A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SberTest/NewsParser.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "refreshData(feed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "53A2F169-077A-4F8A-879C-87DDC56F9CC8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SberTest/NewsParser.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "refreshData(feed:)"
+            landmarkName = "parser(_:didStartElement:namespaceURI:qualifiedName:attributes:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -275,49 +131,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "98D9C3BF-C0A0-452F-B7F1-9E4BF77CDA6D"
+            uuid = "8F54D483-BDF7-421C-8CEC-CECDCC8951BD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SberTest/NewsParser.swift"
+            filePath = "SberTest/Services/FeedService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "refreshData(feed:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "98D9C3BF-C0A0-452F-B7F1-9E4BF77CDA6D - abaa273a4d2e0737"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SberTest.FeedDataObject) -&gt; Swift.Bool in SberTest.FeedData.refreshData(feed: SberTest.FeedData) -&gt; ()"
-                  moduleName = "SberTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsParser.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "98D9C3BF-C0A0-452F-B7F1-9E4BF77CDA6D - c16c7238a925b692"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SberTest.FeedDataObject) -&gt; Swift.Bool in closure #1 (SberTest.FeedDataObject) -&gt; Swift.Bool in SberTest.FeedData.refreshData(feed: SberTest.FeedData) -&gt; ()"
-                  moduleName = "SberTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/miha/Documents/Developer/Xcode/SberTest/SberTest/NewsParser.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "111"
-                  endingLineNumber = "111"
-                  offsetFromSymbolStart = "34">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
