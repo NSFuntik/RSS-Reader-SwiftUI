@@ -3,24 +3,33 @@ import SwiftUI
 import CoreLocation
 import Combine
 
-class FeedData: NSObject, XMLParserDelegate, ObservableObject {
-	var generalURL = URL(string: "https://www.banki.ru/xml/news.rss")!
-	static let shared = FeedData()
-	
-	@Published var rssPosts = [FeedDataObject]()
-	var title: String = String()
-	
-	var pubDate : String = String()
-	
-	var itemDescription: String = String()
-	
-	var elementName: String = String()
-	
-	 @Published var isRead: Bool = Bool()
-	
-	//private var RssPost = FeedDataObject(title: shared.title , pubDate: shared.itemDescription, description: shared.pubDate)
+final class UserData: ObservableObject {
+	@Published var feedURL: String = "https://www.banki.ru/xml/news.rss"
+	@Published var feeds = FeedData.shared
+}
 
-	func getData(){
+class FeedData: NSObject, XMLParserDelegate, ObservableObject {
+	@Published var generalURL: URL!
+	@Published var rssPosts = [FeedDataObject]()
+	//var feedURL: URL = URL(string: UserData)
+	@Published var isRead: Bool = Bool()
+	var title: String = String()
+	var pubDate : String = String()
+	var itemDescription: String = String()
+	var elementName: String = String()
+
+	static let shared = FeedData()
+	override init() {	}
+
+	required init(generalURL: URL) {
+		super.init()
+		self.generalURL = generalURL
+		getData(generalURL: generalURL)
+	}
+	//private var RssPost = FeedDataObject(title: shared.title , pubDate: shared.itemDescription, description: shared.pubDate)
+	
+	
+	func getData(generalURL: URL){
 		print("lol did this work???")
 		
 		let task = URLSession.shared.dataTask(with: generalURL) { [self] data, response, error in
@@ -30,12 +39,9 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 			}
 			
 			DispatchQueue.main.async {
-				if let parser = XMLParser(contentsOf: self.generalURL ){
+				if let parser = XMLParser(contentsOf: self.generalURL){
 					parser.delegate = self
-					if parser.parse(){
-//						self._isRead = isRead
-//						_isRead = false
-						
+					if parser.parse() {
 						print()
 					}
 					print("oh hello!")
@@ -46,13 +52,13 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 		
 	}
 	
-	
-	override init() {
-		super.init()
-		getData()
-		
-	}
-	
+
+//	override init() {
+//		super.init()
+//		getData(generalURL: generalURL)
+//	}
+
+
 	
 	//parser delegate methods
 	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
@@ -97,85 +103,24 @@ class FeedData: NSObject, XMLParserDelegate, ObservableObject {
 	
 	
 }
-/*
-class XMLParserService: NSObject, XMLParserDelegate {
-	private let sourceURL: URL = URL(string: "https://www.banki.ru/xml/news.rss")!
-	private var items: [News] = []
-	private var completion: (([News]) -> ())?
-	private var currentElement: String = ""
-	@Published var itemStore: [News]? //<-
-	static let shared = XMLParserService()
-	private override init() { }
+extension FeedData {
+	func refreshData(feed: FeedData) {
+		let newFeed = FeedData.shared
+		let recentFeedPosts = newFeed.rssPosts.filter { newPost in
+			return !feed.rssPosts.contains { (post) -> Bool in
+				return post.title == newPost.title
+			}
+		}
+		guard !recentFeedPosts.isEmpty else { return }
+		
+		feed.rssPosts.insert(contentsOf: recentFeedPosts, at: 0)
+		
+		if let index = self.rssPosts.firstIndex(where: {$0.url?.absoluteString == feed.generalURL.absoluteString}) {
+			self.rssPosts.remove(at: index)
+			self.rssPosts.insert(contentsOf: newFeed.rssPosts, at: 0)
+			
+		}
+		//self.updateFeeds()
+	}
 
-	private var id: Int = 0
-	func inc() -> Int {
-		id = id + 1
-		return id
-	}
-	private var currentId: String = ""
-	private var currentTitle: String = "" {
-		didSet{
-			currentTitle = currentTitle.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-		}
-	}
-	private var currentDescription: String = "" {
-		didSet{
-			currentDescription = currentDescription.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-		}
-	}
-	private var currentPubDate: String = "" {
-		didSet{
-			currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-		}
-	}
-	
-	func parseData(completion: (([News]) -> ())?) {
-		self.completion = completion
-		let task = URLSession.shared.dataTask(with: sourceURL) { (data, response, error) in
-			guard error == nil else { return }
-			guard let data = data else { return }
-			let parser = XMLParser(data: data)
-			parser.delegate = self
-			parser.parse()
-			//self.itemStore = self.items
-			//print(self.itemStore)
-		}
-		task.resume()
-	}
-	
-	//MARK: - XML Parse Delegate
-	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-		currentElement = elementName
-		if currentElement == "item" {
-			//currentId = ""
-			currentTitle = ""
-			currentDescription = ""
-			currentPubDate = ""
-		}
-	}
-	
-	func parser(_ parser: XMLParser, foundCharacters string: String) {
-		switch currentElement {
-			//case "id": currentId += string
-			case "title": currentTitle += string
-			case "description": currentDescription += string
-			case "pubDate": currentPubDate += string
-			default:
-				break
-		}
-	}
-	func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-		if elementName == "item" {
-			self.items.append(News(id: inc(), title: currentTitle, description: currentDescription, pubDate: currentPubDate))
-		}
-	}
-	
-	func parserDidEndDocument(_ parser: XMLParser) {
-		self.completion?(items)
-	}
-	
-	func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-		print(parseError.localizedDescription)
-	}
 }
-*/

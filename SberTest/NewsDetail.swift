@@ -60,6 +60,7 @@ struct NewsDetail: View {
 				.multilineTextAlignment(.leading)
 				.lineLimit(nil)
 				.padding(.horizontal)
+				.foregroundColor(Color.gray)
 		}.frame(maxWidth: .infinity)
 	}
 

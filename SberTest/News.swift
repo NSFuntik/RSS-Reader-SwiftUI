@@ -10,10 +10,7 @@ import SwiftUI
 import CoreLocation
 
 // MARK: - Item
-final class UserData: ObservableObject {
-	@Published var isRead = false
-	@Published var feeds = FeedData.shared
-}
+
 
 
 class FeedDataObject: Identifiable, ObservableObject {
@@ -21,6 +18,7 @@ class FeedDataObject: Identifiable, ObservableObject {
 	var title: String
 	var pubDate: String
 	var description: String
+	var url: URL?
 	//var num: Int?
 	private var _isRead: Bool?
 	 var isRead: Bool {
