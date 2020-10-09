@@ -4,4 +4,5 @@ RSS Feeder on SwiftUI
 
 ![FeedDetailView](https://github.com/DM1TRYM/SberTest/blob/main/SberTest/Preview%20Content/Preview%20Assets.xcassets/FeedsView.png?raw=true)
 ![FeedDetailView](https://github.com/DM1TRYM/SberTest/blob/main/SberTest/Preview%20Content/Preview%20Assets.xcassets/FeedDetailView.png?raw=true)
+![demo giphy](https://github.com/DM1TRYM/RSS-Reader-SwiftUI/blob/main/SberTest/Preview%20Content/Preview%20Assets.xcassets/Preview.gif?raw=true)
 
